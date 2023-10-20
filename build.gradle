@@ -103,8 +103,8 @@ processResources {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId 'org.aim42'
-            artifactId project.name
+            groupId 'org.aim42.htmlSanityCheck'
+            artifactId 'org.aim42.htmlSanityCheck.gradle.plugin'
             version project.version
             from components.java
         }
@@ -130,6 +130,7 @@ task info(
                 println "project.path         : " + project.path
                 println "projectDir           : " + projectDir
                 println "groupId              : " + project.group
+                println "artifactId           : " + project.name
                 println "buildDir             : " + buildDir
                 println "targetCompatibility  : " + rootProject.targetCompatibility
                 println "=" * 80
