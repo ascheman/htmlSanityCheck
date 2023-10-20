@@ -2,13 +2,13 @@
 === Publishing kbd:htmlSC Releases
 
 ==== Automating the Upload of a Gradle Plugin
-Puh - handling Bintray or JCenter is
+Puh - handling Bintray or mavenCentral is
 https://java.dzone.com/articles/enjoy-bintray-and-use-it-pain[not funny].
 
 ==== Handling (Secret) Credentials
 We use Etienne Studers awesome
 https://github.com/etiennestuder/gradle-credentials-plugin[Gradle-Credentials plugin]
-to allow automatic deployment to public portals (like Bintray, JCenter and/or Gradle-Plugin-Portal)
+to allow automatic deployment to public portals (like Bintray, mavenCentral and/or Gradle-Plugin-Portal)
 and keep the appropriate passwords/API-keys secret.
 
 Brief instructions below - for details see the

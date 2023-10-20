@@ -1,6 +1,5 @@
 repositories {
-    jcenter()
-//    mavenCentral()
+    mavenCentral()
 }
 
 apply plugin: 'java'
