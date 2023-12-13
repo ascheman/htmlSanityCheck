@@ -216,16 +216,14 @@ class Configuration {
     /**
      * checks plausibility of configuration:
      * We need at least one html file as input, maybe several
-     * @param configuration instance
      *
-     * srcDocs needs to be of type {@link FileCollection}
+     * srcDocs needs to be of type {@link Set<String>}
      * to be Gradle-compliant
      */
     Boolean isValid() {
-
         // we need at least srcDir and srcDocs!!
-        File srcDir = getConfigItemByName(Configuration.ITEM_NAME_sourceDir)
-        Set<String> srcDocs = getConfigItemByName(Configuration.ITEM_NAME_sourceDocuments)
+        File srcDir = (File) getConfigItemByName(Configuration.ITEM_NAME_sourceDir)
+        Set<String> srcDocs = (Set<String>) getConfigItemByName(Configuration.ITEM_NAME_sourceDocuments)
 
         // cannot check if source director is null (= unspecified)
         if ((srcDir == null)) {
@@ -233,7 +231,7 @@ class Configuration {
         }
 
         if ((!srcDir.exists())) {
-            throw new MisconfigurationException("given sourceDir $srcDir does not exist.")
+            throw new MisconfigurationException("given sourceDir '$srcDir' does not exist")
         }
 
         // cannot check if both input params are null
@@ -261,6 +259,6 @@ class Configuration {
     String toString() {
         return "Configuration{" +
                 "configurationItems=" + configurationItems +
-                '}';
+                '}'
     }
 }
