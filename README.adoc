@@ -134,10 +134,11 @@ import org.aim42.htmlsanitycheck.check.*
 
 buildscript {
     repositories {
+        mavenCentral()
         maven {
+            // This is only necessary for older releases (< 2.00)
             url "https://plugins.gradle.org/m2/"
         }
-        jcenter()
     }
 }
 

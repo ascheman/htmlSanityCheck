@@ -17,7 +17,7 @@ inputFiles = [
 //these will be copied as resources to ./images
 //folders are relative to inputPath
 imageDirs = [
-    /** imageDirs **/
+    "images"
 ]
 
 // these are directories (dirs) and files which Gradle monitors for a change
@@ -258,8 +258,10 @@ exportEA.with {
 
 //tag::htmlSanityCheckConfig[]
 htmlSanityCheck.with {
-    sourceDir = "microsite/output"
-    //checkingResultsDir =
+    sourceDir = 'microsite/output'
+//    sourceDir = 'html5'
+//    sourceDir = "microsite/output"
+//    checkingResultsDir = '${user.home}/build/microsite/output/htmlchecks'
 }
 //end::htmlSanityCheckConfig[]
 
