@@ -259,6 +259,7 @@ exportEA.with {
 //tag::htmlSanityCheckConfig[]
 htmlSanityCheck.with {
     sourceDir = 'microsite/output'
+    resultsFolder = 'html-sanity-check'
 //    sourceDir = 'html5'
 //    sourceDir = "microsite/output"
 //    checkingResultsDir = '${user.home}/build/microsite/output/htmlchecks'
