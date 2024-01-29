@@ -81,6 +81,10 @@ configure(subprojects) {
     // apply plugin: 'codenarc'
 }
 
+tasks.named("dependencyUpdates").configure {
+    gradleReleaseChannel = true
+}
+
 tasks.register("integrationTest") {
     group("Verification")
     description("Run overall integration tests")
