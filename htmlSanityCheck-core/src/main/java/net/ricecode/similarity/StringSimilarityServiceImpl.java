@@ -24,7 +24,6 @@
 package net.ricecode.similarity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -59,7 +58,7 @@ public class StringSimilarityServiceImpl implements StringSimilarityService {
     public List<SimilarityScore> scoreAll(List<String> features, String target)
     {
         List<SimilarityScore> scores = new ArrayList<>();
-        
+
         for (String feature : features) {
         	double score = strategy.score(feature, target);
         	scores.add(new SimilarityScore(feature, score));
@@ -99,14 +98,13 @@ public class StringSimilarityServiceImpl implements StringSimilarityService {
      * @param comparator A comparator that is used sort the scores.
      * @return A SimilarityScore that has the top value amongst the features, according to the comparator.
      */
-    public SimilarityScore findTop(List<String> features, String target, Comparator<SimilarityScore> comparator)
-    {
-    	if (features.isEmpty()) {
-    		return null;
-    	}
-    	List<SimilarityScore> scores = scoreAll(features, target);
-    	Collections.sort(scores, comparator);
-    	return scores.get(0);
+    public SimilarityScore findTop(List<String> features, String target, Comparator<SimilarityScore> comparator) {
+        if (features.isEmpty()) {
+            return null;
+        }
+        List<SimilarityScore> scores = scoreAll(features, target);
+        scores.sort(comparator);
+        return scores.get(0);
     }
 
     // added by Gernot Starke:
@@ -125,7 +123,7 @@ public class StringSimilarityServiceImpl implements StringSimilarityService {
 
         if ((!features.isEmpty()) && (n >= 1)) {
             List<SimilarityScore> scores = scoreAll(features, target);
-            Collections.sort(scores, new DescendingSimilarityScoreComparator());
+            scores.sort(new DescendingSimilarityScoreComparator());
 
             // fails if n> scores.size(): result = scores.subList(0, n);
             result = scores.subList(0, Math.min(scores.size(), n));
