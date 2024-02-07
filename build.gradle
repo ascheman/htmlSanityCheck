@@ -48,6 +48,8 @@ configure(subprojects) {
 
     apply plugin: 'jacoco'
 
+    apply plugin: "org.jreleaser" version: "${pluginVersionJreleaser}"
+
     description "${rootProject.description} - Module ${project.name}"
 
     dependencies {

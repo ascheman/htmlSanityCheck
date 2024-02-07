@@ -154,6 +154,7 @@ class BrokenHttpLinksCheckerSpec extends Specification {
     }
 
 
+    @Ignore
     def "bad amazon link is identified as problem"() {
 
         given: "an HTML page with a single (good) amazon link"

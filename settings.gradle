@@ -1,13 +1,14 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
+        mavenLocal()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
 plugins {
     // to report build results back to gradle.org
-    id "com.gradle.enterprise" version "3.16.1"
+    id ("com.gradle.enterprise") version "${pluginVersionGradleEnterprise}"
 }
 
 gradleEnterprise {
