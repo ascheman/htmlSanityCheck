@@ -10,7 +10,16 @@ buildscript {
 plugins {
     id 'java'
 
+    alias(libs.plugins.sonar)
     alias(libs.plugins.gradle.versions)
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "ascheman_htmlSanityCheck"
+        property "sonar.organization", "ascheman"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 allprojects {
@@ -49,6 +58,18 @@ configure(subprojects) {
     apply plugin: 'jacoco'
 
     description "${rootProject.description} - Module ${project.name}"
+
+//    sonar {
+//        properties {
+//            property "sonar.sources", "src/main"
+//            property "sonar.tests", "src/test"
+//            // I was testing with JaCoCo, so the next line is not needed if you're using some other tool
+//            property "sonar.coverage.jacoco.xmlReportPaths", "../htmlSanityCheck-gradle-plugin/build/reports/jacoco/testCodeCoverageReport/testCodeCoverageReport.xml"
+//            property "sonar.projectKey", "ascheman_htmlSanityCheck"
+//            property "sonar.organization", "ascheman"
+//            property "sonar.host.url", "https://sonarcloud.io"
+//        }
+//    }
 
     dependencies {
         implementation platform(libs.groovy.bom)
