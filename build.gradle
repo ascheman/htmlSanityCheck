@@ -10,7 +10,16 @@ buildscript {
 plugins {
     id 'java'
 
+    alias(libs.plugins.sonar)
     alias(libs.plugins.gradle.versions)
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "ascheman_htmlSanityCheck"
+        property "sonar.organization", "ascheman"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 allprojects {
