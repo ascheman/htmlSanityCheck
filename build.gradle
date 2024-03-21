@@ -52,9 +52,6 @@ configure(subprojects) {
     description "${rootProject.description} - Module ${project.name}"
 
     dependencies {
-        implementation platform(libs.groovy.bom)
-        implementation 'org.codehaus.groovy:groovy'
-
         testImplementation platform(libs.spock)
         testImplementation "org.spockframework:spock-core"
         testImplementation "org.spockframework:spock-junit4"
@@ -93,10 +90,6 @@ configure(subprojects) {
         }
         dependsOn check // tests are required to run before generating the report
     }
-
-    // The CodeNarc plugin performs quality checks on your project’s
-    // Groovy source files using CodeNarc and generates reports from these checks.
-    // apply plugin: 'codenarc'
 }
 
 sonar {
