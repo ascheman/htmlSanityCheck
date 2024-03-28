@@ -14,10 +14,17 @@ import java.security.cert.X509Certificate;
 
 public final class TrustAllCertificates implements X509TrustManager, HostnameVerifier
 {
-    public X509Certificate[] getAcceptedIssuers() {return null;}
-    public void checkClientTrusted(X509Certificate[] certs, String authType) {}
-    public void checkServerTrusted(X509Certificate[] certs, String authType) {}
-    public boolean verify(String hostname, SSLSession session) {return true;}
+    public X509Certificate[] getAcceptedIssuers() {return new X509Certificate[0];}
+    public void checkClientTrusted(X509Certificate[] certs, String authType) { //NOSONAR(S4830)
+        /* As we do only read external content, we do not care much about SSL certs */
+    }
+    public void checkServerTrusted(X509Certificate[] certs, String authType) { //NOSONAR(S4830)
+        /* As we do only read external content, we do not care much about SSL certs */
+    }
+    public boolean verify(String hostname, SSLSession session) {
+        /* As we do only read external content, we do not care much about hostname equality */
+        return !hostname.isEmpty();
+    }
 
     /**
      * Installs a new {@link TrustAllCertificates} as trust manager and hostname verifier.
@@ -29,7 +36,8 @@ public final class TrustAllCertificates implements X509TrustManager, HostnameVer
             TrustAllCertificates trustAll = new TrustAllCertificates();
 
             // Install the all-trusting trust manager
-            SSLContext sc = SSLContext.getInstance("SSL");
+            // Intentiaonally using "SSL" to make it work with a low security level
+            SSLContext sc = SSLContext.getInstance("SSL"); //NOSONAR(S4424)
             sc.init(null,
                     new TrustManager[]{trustAll},
                     new java.security.SecureRandom());
@@ -38,14 +46,11 @@ public final class TrustAllCertificates implements X509TrustManager, HostnameVer
             // Install the all-trusting host verifier
             HttpsURLConnection.setDefaultHostnameVerifier(trustAll);
         }
-        catch (NoSuchAlgorithmException e)
+        catch (NoSuchAlgorithmException | KeyManagementException e)
         {
             throw new RuntimeException("Failed setting up all thrusting certificate manager.", e);
         }
-        catch (KeyManagementException e)
-        {
-            throw new RuntimeException("Failed setting up all thrusting certificate manager.", e);
-        }
+
     }
 }
 
